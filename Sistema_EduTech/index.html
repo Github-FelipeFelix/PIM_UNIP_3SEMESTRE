@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Integrada</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- plugin VLibras para acessibilidade em LIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+    <!-- botao do VLibras fica no canto da tela -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <!-- cabecalho com menu de navegacao -->
+    <header class="cabecalho">
+        <div class="container cabecalho-interno">
+            <div class="logo">
+                <span class="logo-nome">EduTech Integrada</span>
+                <span class="logo-sub">Gestão Acadêmica</span>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#painel">Painel</a></li>
+                    <li><a href="#notas">Notas</a></li>
+                    <li><a href="#turmas">Turmas</a></li>
+                    <li><a href="#relatorios">Relatórios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- conteudo principal -->
+    <main class="conteudo container" id="painel">
+        <h1>Painel do Aluno</h1>
+
+        <!-- cards com resumo do desempenho -->
+        <section class="cards">
+            <div class="card card-verde">
+                <h2>Média Geral</h2>
+                <p class="numero">7.8</p>
+                <p class="info">Aprovado</p>
+            </div>
+            <div class="card card-amarelo">
+                <h2>Matérias em Risco</h2>
+                <p class="numero">2</p>
+                <p class="info">Precisa de atenção</p>
+            </div>
+            <div class="card card-azul">
+                <h2>Frequência</h2>
+                <p class="numero">91%</p>
+                <p class="info">Dentro do limite</p>
+            </div>
+        </section>
+
+        <!-- tabela de notas -->
+        <section id="notas">
+            <h2>Boletim 2026</h2>
+            <div class="tabela-wrapper">
+                <table class="tabela-notas">
+                    <thead>
+                        <tr>
+                            <th>Matéria</th>
+                            <th>NP1</th>
+                            <th>PIM</th>
+                            <th>NP2</th>
+                            <th>Média</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Matéria">Banco de Dados</td>
+                            <td data-label="NP1">8.0</td>
+                            <td data-label="PIM">7.5</td>
+                            <td data-label="NP2">8.5</td>
+                            <td data-label="Média">8.1</td>
+                            <td data-label="Situação"><span class="badge verde">Aprovado</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Matéria">Programação OO</td>
+                            <td data-label="NP1">4.5</td>
+                            <td data-label="PIM">6.0</td>
+                            <td data-label="NP2">7.0</td>
+                            <td data-label="Média">5.8</td>
+                            <td data-label="Situação"><span class="badge vermelho">Em Risco</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 EduTech Integrada</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
