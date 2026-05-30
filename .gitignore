@@ -6,3 +6,7 @@ Relatório_PIM_Terceiro_Semestre.docx.pdf
 __pycache__/
 *.pyc
 .env
+
+# build do dotnet
+bin/
+obj/
