@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Integrada - Administração</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- plugin VLibras para acessibilidade em LIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+    <!-- botao do VLibras fica no canto da tela -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <header class="cabecalho">
+        <div class="container cabecalho-interno">
+            <div class="logo">
+                <span class="logo-nome">EduTech Integrada</span>
+                <span class="logo-sub">Gestão Acadêmica</span>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#painel">Painel</a></li>
+                    <li><a href="#matriculas">Matrículas</a></li>
+                    <li><a href="#log">Log</a></li>
+                    <li><a href="#" onclick="sair()">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteudo container" id="painel">
+        <h1>Painel do Administrador</h1>
+        <p class="subtitulo">Visão geral da turma ADS3N</p>
+
+        <!-- cards com o resumo da turma -->
+        <section class="cards">
+            <div class="card card-azul">
+                <h2>Total de Alunos</h2>
+                <p class="numero" id="num-alunos">-</p>
+                <p class="info">Matriculados na turma</p>
+            </div>
+            <div class="card card-verde">
+                <h2>Média Geral da Turma</h2>
+                <p class="numero" id="num-media">-</p>
+                <p class="info">Fórmula UNIP (4-2-4)</p>
+            </div>
+            <div class="card card-amarelo">
+                <h2>Taxa de Aprovação</h2>
+                <p class="numero" id="num-aprovacao">-</p>
+                <p class="info">Médias maiores ou iguais a 7,0</p>
+            </div>
+            <div class="card card-vermelho">
+                <h2>Risco em 2+ Matérias</h2>
+                <p class="numero" id="num-risco">-</p>
+                <p class="info" id="info-risco"></p>
+            </div>
+        </section>
+
+        <!-- matricula de alunos nas materias -->
+        <section id="matriculas">
+            <h2>Matrículas</h2>
+
+            <div class="form-linha">
+                <div class="campo">
+                    <label for="select-aluno">Aluno</label>
+                    <select id="select-aluno"></select>
+                </div>
+                <div class="campo">
+                    <label for="select-materia">Matéria</label>
+                    <select id="select-materia"></select>
+                </div>
+                <button class="botao" id="botao-matricular">Matricular</button>
+                <span class="msg-ok" id="msg-matricula"></span>
+            </div>
+
+            <div class="tabela-wrapper">
+                <table class="tabela-notas">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>RA</th>
+                            <th>Matérias matriculadas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-matriculas"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- registro de tudo que acontece no sistema -->
+        <section id="log">
+            <h2>Log de Ações</h2>
+
+            <div class="tabela-wrapper">
+                <table class="tabela-notas">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Usuário</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-log"></tbody>
+                </table>
+            </div>
+
+            <div class="acoes">
+                <button class="link-discreto" id="botao-restaurar">Restaurar dados de exemplo</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 EduTech Integrada</p>
+    </footer>
+
+    <script src="dados.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

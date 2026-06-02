@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Integrada - Diário Eletrônico</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- plugin VLibras para acessibilidade em LIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+    <!-- botao do VLibras fica no canto da tela -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <header class="cabecalho">
+        <div class="container cabecalho-interno">
+            <div class="logo">
+                <span class="logo-nome">EduTech Integrada</span>
+                <span class="logo-sub">Gestão Acadêmica</span>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="professor.html">Diário</a></li>
+                    <li><a href="#" onclick="sair()">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteudo container">
+        <h1>Diário Eletrônico</h1>
+        <p class="subtitulo" id="prof-info"></p>
+
+        <section>
+            <h2>Lançamento de Notas</h2>
+
+            <div class="form-linha">
+                <div class="campo">
+                    <label for="select-materia">Matéria</label>
+                    <select id="select-materia"></select>
+                </div>
+            </div>
+
+            <div class="tabela-wrapper">
+                <table class="tabela-notas">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>RA</th>
+                            <th>NP1</th>
+                            <th>PIM</th>
+                            <th>NP2</th>
+                            <th>Média</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-diario"></tbody>
+                </table>
+            </div>
+
+            <div class="acoes">
+                <button class="botao" id="botao-salvar">Salvar notas</button>
+                <span class="msg-ok" id="msg"></span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 EduTech Integrada</p>
+    </footer>
+
+    <script src="dados.js"></script>
+    <script src="professor.js"></script>
+</body>
+</html>

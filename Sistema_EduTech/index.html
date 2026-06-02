@@ -31,6 +31,7 @@
                     <li><a href="#notas">Notas</a></li>
                     <li><a href="#turmas">Turmas</a></li>
                     <li><a href="#relatorios">Relatórios</a></li>
+                    <li><a href="#" onclick="sair()">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,23 +40,24 @@
     <!-- conteudo principal -->
     <main class="conteudo container" id="painel">
         <h1>Painel do Aluno</h1>
+        <p class="subtitulo" id="aluno-info"></p>
 
         <!-- cards com resumo do desempenho -->
         <section class="cards">
             <div class="card card-verde">
                 <h2>Média Geral</h2>
-                <p class="numero">7.8</p>
-                <p class="info">Aprovado</p>
+                <p class="numero" id="num-media">7.8</p>
+                <p class="info" id="info-media">Aprovado</p>
             </div>
             <div class="card card-amarelo">
                 <h2>Matérias em Risco</h2>
-                <p class="numero">2</p>
-                <p class="info">Precisa de atenção</p>
+                <p class="numero" id="num-risco">2</p>
+                <p class="info" id="info-risco">Precisa de atenção</p>
             </div>
             <div class="card card-azul">
                 <h2>Frequência</h2>
-                <p class="numero">91%</p>
-                <p class="info">Dentro do limite</p>
+                <p class="numero" id="num-freq">91%</p>
+                <p class="info" id="info-freq">Dentro do limite</p>
             </div>
         </section>
 
@@ -74,7 +76,7 @@
                             <th>Situação</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="corpo-boletim">
                         <tr>
                             <td data-label="Matéria">Banco de Dados</td>
                             <td data-label="NP1">8.0</td>
@@ -101,6 +103,7 @@
         <p>&copy; 2026 EduTech Integrada</p>
     </footer>
 
+    <script src="dados.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

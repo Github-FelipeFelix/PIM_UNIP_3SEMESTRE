@@ -1,46 +1,67 @@
-// JavaScript do sistema EduTech Integrada
+// JavaScript do painel do aluno
+// monta o boletim e os cards com os dados do aluno logado
 
-// formula de calculo de media da UNIP
-function calcularMedia(np1, pim, np2) {
-    var media = ((np1 * 4) + (pim * 2) + (np2 * 4)) / 10;
-    return Math.round(media * 100) / 100; // arredonda para 2 casas
-}
+document.addEventListener('DOMContentLoaded', function() {
+    var sessao = exigirLogin('aluno');
+    if (!sessao) return;
 
-// atualiza os badges de situacao de cada linha da tabela
-function atualizarSituacao() {
-    var linhas = document.querySelectorAll('.tabela-notas tbody tr');
+    var dados = carregarDados();
+    var aluno = buscarAluno(dados, sessao.login);
+    if (!aluno) return;
 
-    for (var i = 0; i < linhas.length; i++) {
-        var celulas = linhas[i].querySelectorAll('td');
+    document.getElementById('aluno-info').textContent =
+        sessao.nome + ' — ' + aluno.ra + ' — Turma ' + aluno.turma;
 
-        if (celulas.length < 6) continue;
+    montarBoletim(aluno);
+    montarCards(aluno);
+});
 
-        var np1 = parseFloat(celulas[1].textContent) || 0;
-        var pim = parseFloat(celulas[2].textContent) || 0;
-        var np2 = parseFloat(celulas[3].textContent) || 0;
-        var media = calcularMedia(np1, pim, np2);
+// preenche a tabela do boletim
+function montarBoletim(aluno) {
+    var corpo = document.getElementById('corpo-boletim');
+    corpo.innerHTML = '';
 
-        // atualiza a media na tabela
-        celulas[4].textContent = media.toFixed(1);
+    for (var i = 0; i < aluno.notas.length; i++) {
+        var nota = aluno.notas[i];
+        var media = calcularMedia(nota.np1, nota.pim, nota.np2);
+        var situacao = situacaoNota(nota);
 
-        // atualiza o badge de situacao
-        var badge = celulas[5].querySelector('.badge');
-        if (badge) {
-            if (np1 < 5.0) {
-                badge.textContent = 'Em Risco';
-                badge.className = 'badge vermelho';
-            } else if (media >= 7.0) {
-                badge.textContent = 'Aprovado';
-                badge.className = 'badge verde';
-            } else {
-                badge.textContent = 'Reprovado';
-                badge.className = 'badge vermelho';
-            }
-        }
+        var linha = document.createElement('tr');
+        linha.innerHTML =
+            '<td data-label="Matéria">' + nota.materia + '</td>' +
+            '<td data-label="NP1">' + nota.np1.toFixed(1) + '</td>' +
+            '<td data-label="PIM">' + nota.pim.toFixed(1) + '</td>' +
+            '<td data-label="NP2">' + nota.np2.toFixed(1) + '</td>' +
+            '<td data-label="Média">' + media.toFixed(1) + '</td>' +
+            '<td data-label="Situação"><span class="badge ' + classeSituacao(situacao) + '">' + situacao + '</span></td>';
+        corpo.appendChild(linha);
     }
 }
 
-// roda quando a pagina carregar
-document.addEventListener('DOMContentLoaded', function() {
-    atualizarSituacao();
-});
+// preenche os cards de resumo do desempenho
+function montarCards(aluno) {
+    var somaMedias = 0;
+    var qtdMaterias = 0;
+    var emRisco = 0;
+
+    for (var i = 0; i < aluno.notas.length; i++) {
+        var nota = aluno.notas[i];
+        if (situacaoNota(nota) === 'Sem Nota') continue; // materia recem matriculada nao conta
+
+        somaMedias += calcularMedia(nota.np1, nota.pim, nota.np2);
+        qtdMaterias++;
+        if (nota.np1 < 5.0) emRisco++;
+    }
+
+    // media geral arredondada para 1 casa
+    var mediaGeral = qtdMaterias > 0 ? Math.round((somaMedias / qtdMaterias) * 10) / 10 : 0;
+
+    document.getElementById('num-media').textContent = mediaGeral.toFixed(1);
+    document.getElementById('info-media').textContent = mediaGeral >= 7.0 ? 'Aprovado' : 'Abaixo da média';
+
+    document.getElementById('num-risco').textContent = emRisco;
+    document.getElementById('info-risco').textContent = emRisco > 0 ? 'Precisa de atenção' : 'Tudo em dia';
+
+    document.getElementById('num-freq').textContent = aluno.frequencia + '%';
+    document.getElementById('info-freq').textContent = aluno.frequencia >= 75 ? 'Dentro do limite' : 'Abaixo do mínimo';
+}

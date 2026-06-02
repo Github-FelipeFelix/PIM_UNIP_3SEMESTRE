@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Integrada - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- plugin VLibras para acessibilidade em LIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+    <!-- botao do VLibras fica no canto da tela -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <header class="cabecalho">
+        <div class="container cabecalho-interno">
+            <div class="logo">
+                <span class="logo-nome">EduTech Integrada</span>
+                <span class="logo-sub">Gestão Acadêmica</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- card de login centralizado -->
+    <main class="login-wrapper">
+        <div class="login-card">
+            <h1>Entrar no sistema</h1>
+
+            <div class="campo">
+                <label for="login">Usuário</label>
+                <input type="text" id="login" autocomplete="off">
+            </div>
+
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha">
+            </div>
+
+            <button class="botao" id="botao-entrar">Entrar</button>
+
+            <p class="erro" id="erro"></p>
+
+            <p class="dica">
+                Usuários de demonstração: felipe, marina e joao (alunos),
+                carlos (professor) e admin. Senha de todos: 1234
+            </p>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 EduTech Integrada</p>
+    </footer>
+
+    <script src="dados.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

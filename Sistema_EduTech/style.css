@@ -106,6 +106,7 @@ body {
 .card-verde  { border-left-color: var(--verde); }
 .card-amarelo { border-left-color: var(--amarelo); }
 .card-azul   { border-left-color: var(--azul); }
+.card-vermelho { border-left-color: var(--vermelho); }
 
 .card h2   { font-size: 0.85rem; color: #64748b; margin-bottom: 8px; }
 .card .numero { font-size: 2rem; font-weight: bold; }
@@ -152,6 +153,129 @@ body {
 
 .badge.verde    { background: #dcfce7; color: var(--verde); }
 .badge.vermelho { background: #fee2e2; color: var(--vermelho); }
+.badge.cinza    { background: #e2e8f0; color: #475569; }
+
+/* subtitulo abaixo do titulo da pagina */
+.subtitulo {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: -12px 0 20px;
+}
+
+/* formularios (login, diario e matriculas) */
+.campo label {
+    display: block;
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+.campo input,
+.campo select {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: var(--branco);
+}
+
+.form-linha {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.botao {
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: #1d4ed8;
+}
+
+.acoes {
+    margin-top: 16px;
+}
+
+.msg-ok  { color: var(--verde); font-size: 0.9rem; margin-left: 8px; }
+.msg-erro { color: var(--vermelho); font-size: 0.9rem; margin-left: 8px; }
+
+.erro {
+    color: var(--vermelho);
+    font-size: 0.85rem;
+    margin-top: 10px;
+    min-height: 1.2em;
+}
+
+/* input de nota dentro da tabela do diario */
+.nota-input {
+    width: 64px;
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* botao discreto (restaurar dados de exemplo) */
+.link-discreto {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 0.78rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* tela de login */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 24px 16px;
+}
+
+.login-card {
+    background: var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 32px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.login-card h1 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.login-card .campo {
+    margin-bottom: 12px;
+}
+
+.login-card .campo input {
+    width: 100%;
+}
+
+.login-card .botao {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.dica {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-top: 16px;
+}
 
 /* rodape */
 .rodape {
