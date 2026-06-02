@@ -1,7 +1,7 @@
 // dados.js - guarda e carrega os dados do sistema no localStorage
 // enquanto a API com o back em C# nao fica pronta, o navegador faz o papel do banco
 
-var CHAVE_DADOS = 'edutech_dados';
+var CHAVE_DADOS = 'edutech_dados_v2'; // mudei a chave para o navegador nao carregar dados da estrutura antiga
 var CHAVE_SESSAO = 'edutech_sessao';
 
 // dados iniciais de exemplo (os mesmos do Program.cs e do banco_dados.sql)
@@ -19,21 +19,24 @@ function dadosIniciais() {
                 login: 'felipe', ra: 'RA001', turma: 'ADS3N', frequencia: 91,
                 notas: [
                     { materia: 'Banco de Dados', np1: 8.0, pim: 7.5, np2: 8.5 },
-                    { materia: 'Programação OO', np1: 4.5, pim: 6.0, np2: 7.0 }
+                    { materia: 'Programação OO', np1: 4.5, pim: 6.0, np2: 7.0 },
+                    { materia: 'Engenharia de Software', np1: 0, pim: 0, np2: 0 }
                 ]
             },
             {
                 login: 'marina', ra: 'RA002', turma: 'ADS3N', frequencia: 78,
                 notas: [
                     { materia: 'Banco de Dados', np1: 3.0, pim: 4.0, np2: 5.0 },
-                    { materia: 'Programação OO', np1: 4.0, pim: 5.0, np2: 6.0 }
+                    { materia: 'Programação OO', np1: 4.0, pim: 5.0, np2: 6.0 },
+                    { materia: 'Engenharia de Software', np1: 0, pim: 0, np2: 0 }
                 ]
             },
             {
                 login: 'joao', ra: 'RA003', turma: 'ADS3N', frequencia: 95,
                 notas: [
                     { materia: 'Banco de Dados', np1: 9.5, pim: 9.0, np2: 9.0 },
-                    { materia: 'Programação OO', np1: 8.0, pim: 8.0, np2: 8.5 }
+                    { materia: 'Programação OO', np1: 8.0, pim: 8.0, np2: 8.5 },
+                    { materia: 'Engenharia de Software', np1: 0, pim: 0, np2: 0 }
                 ]
             }
         ],

@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     montarBoletim(aluno);
     montarCards(aluno);
+    montarRelatorio(dados, aluno);
+
+    document.getElementById('num-colegas').textContent = dados.alunos.length;
 });
 
 // preenche a tabela do boletim
@@ -64,4 +67,47 @@ function montarCards(aluno) {
 
     document.getElementById('num-freq').textContent = aluno.frequencia + '%';
     document.getElementById('info-freq').textContent = aluno.frequencia >= 75 ? 'Dentro do limite' : 'Abaixo do mínimo';
+}
+
+// compara a media do aluno com a media da turma em cada materia
+function montarRelatorio(dados, aluno) {
+    var corpo = document.getElementById('corpo-relatorio');
+    corpo.innerHTML = '';
+
+    for (var i = 0; i < aluno.notas.length; i++) {
+        var nota = aluno.notas[i];
+        var temNota = situacaoNota(nota) !== 'Sem Nota';
+        var minhaMedia = calcularMedia(nota.np1, nota.pim, nota.np2);
+
+        // media da turma nessa materia (so de quem tem nota lancada)
+        var soma = 0;
+        var qtd = 0;
+        for (var j = 0; j < dados.alunos.length; j++) {
+            var notaColega = buscarNota(dados.alunos[j], nota.materia);
+            if (!notaColega || situacaoNota(notaColega) === 'Sem Nota') continue;
+            soma += calcularMedia(notaColega.np1, notaColega.pim, notaColega.np2);
+            qtd++;
+        }
+        var mediaTurma = qtd > 0 ? soma / qtd : 0;
+
+        var comparacao = '-';
+        var classe = 'cinza';
+        if (temNota && qtd > 0) {
+            if (minhaMedia >= mediaTurma) {
+                comparacao = 'Acima da turma';
+                classe = 'verde';
+            } else {
+                comparacao = 'Abaixo da turma';
+                classe = 'vermelho';
+            }
+        }
+
+        var linha = document.createElement('tr');
+        linha.innerHTML =
+            '<td data-label="Matéria">' + nota.materia + '</td>' +
+            '<td data-label="Minha Média">' + (temNota ? minhaMedia.toFixed(1) : '-') + '</td>' +
+            '<td data-label="Média da Turma">' + (qtd > 0 ? mediaTurma.toFixed(1) : '-') + '</td>' +
+            '<td data-label="Comparação"><span class="badge ' + classe + '">' + comparacao + '</span></td>';
+        corpo.appendChild(linha);
+    }
 }

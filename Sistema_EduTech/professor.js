@@ -64,6 +64,12 @@ function montarDiario() {
         corpo.appendChild(linha);
         atualizarLinha(linha);
     }
+
+    // materia sem ninguem matriculado
+    if (corpo.children.length === 0) {
+        corpo.innerHTML = '<tr><td colspan="7">Nenhum aluno matriculado nessa matéria ainda. ' +
+            'A matrícula é feita na tela do administrador.</td></tr>';
+    }
 }
 
 // le os tres inputs de uma linha da tabela
